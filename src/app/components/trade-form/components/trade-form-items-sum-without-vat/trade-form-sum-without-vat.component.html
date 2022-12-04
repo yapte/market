@@ -1,0 +1,13 @@
+<label> Общая сумма без НДС </label>
+<p-inputNumber *ngIf="!(isManualEnterPriceForEachProduct$ |async); else calculatedSum" [formControl]="control"
+    mode="currency" currency="RUB" locale="ru-RU"></p-inputNumber>
+
+<ng-template #calculatedSum>
+    <div class="calculated-sum">
+        <ng-container *ngIf="sum$ |async as sum; else noSum">
+            {{sum |currency}}
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #noSum> Не определена </ng-template>

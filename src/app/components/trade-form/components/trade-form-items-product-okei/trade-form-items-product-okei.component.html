@@ -1,0 +1,3 @@
+<label> Ед. измерения <span class="required"> * </span> </label>
+<p-autoComplete [formControl]="control" [showEmptyMessage]="true" [suggestions]="suggestions"
+    (completeMethod)="filterOkei($event)" field="label" [minLength]="1"></p-autoComplete>

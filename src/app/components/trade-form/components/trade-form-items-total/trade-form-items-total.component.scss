@@ -1,0 +1,8 @@
+:host {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    align-items: center;
+    gap: 12px;
+    text-align: right;
+}

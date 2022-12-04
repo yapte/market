@@ -1,0 +1,24 @@
+<div>Общая сумма с НДС</div>
+
+<div *ngIf="!(isControlVisible$ |async)">
+    <ng-container *ngIf="totalSumWithoutVat$ |async as sumWithoutVat; else noSum">
+        {{sumWithoutVat |currency}}
+    </ng-container>
+</div>
+<p-inputNumber *ngIf="isControlVisible$ |async" [formControl]="control" mode="currency" currency="RUB" locale="ru-RU">
+</p-inputNumber>
+
+<div>НДС ({{rateVatDescription$ |async}})</div>
+<div>
+    <ng-container *ngIf="rateVatValue$ |async as rateVatValue; else noSum">
+        {{rateVatValue |currency}}
+    </ng-container>
+</div>
+<div>Начальная максимальная цена договора</div>
+<div>
+    <ng-container *ngIf="sumWithVat$ |async as sumWithVat; else noSum">
+        {{sumWithVat |currency}}
+    </ng-container>
+</div>
+
+<ng-template #noSum> Не определена </ng-template>

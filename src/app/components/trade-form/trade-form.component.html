@@ -1,0 +1,192 @@
+<form *ngIf="form" class="col" (ngSubmit)="submit()">
+    <div class="block col">
+        <div class="block-title"> ОСНОВНАЯ ИНФОРМАЦИЯ </div>
+
+        <div class="block-body col">
+            <p class="required-info">
+                * — Поля, обязательные для заполнения
+            </p>
+
+            <app-trade-form-main-name></app-trade-form-main-name>
+            <!-- TODO: Rename -->
+            <app-trade-form-description></app-trade-form-description>
+            <!-- TODO: Rename -->
+            <app-trade-form-workgroups></app-trade-form-workgroups>
+            <!-- TODO: Rename -->
+            <app-trade-form-is-import-phaseout></app-trade-form-is-import-phaseout>
+            <!-- TODO: Rename -->
+            <app-trade-form-is-smp-only></app-trade-form-is-smp-only>
+            <app-trade-form-main-docs></app-trade-form-main-docs>
+        </div>
+    </div>
+
+    <p-panel [toggleable]="true" [collapsed]="true" iconPos="start" class="eis-panel">
+        <ng-template pTemplate="header">
+            <div class="is-eis row">
+                <app-trade-form-main-is-eis></app-trade-form-main-is-eis>
+                Подлежит размещению в ЕИС
+            </div>
+        </ng-template>
+        <div class="panel-inner col">
+            <app-trade-form-eis-is-not-dishonest></app-trade-form-eis-is-not-dishonest>
+            <app-trade-form-eis-is-emergency></app-trade-form-eis-is-emergency>
+            <app-trade-form-eis-application-request-order></app-trade-form-eis-application-request-order>
+            <app-trade-form-eis-results-review-order></app-trade-form-eis-results-review-order>
+            <app-trade-form-eis-plan-number></app-trade-form-eis-plan-number>
+            <app-trade-form-eis-plan-position-number></app-trade-form-eis-plan-position-number>
+        </div>
+    </p-panel>
+
+    <div class="block col">
+        <div class="block-title"> ПОЗИЦИИ ЗАКАЗА </div>
+
+        <div class="block-body col">
+            <div *ngFor="let p of products; let i = index" class="product">
+                <div class="product-number"> {{i + 1}} </div>
+
+                <div class="product-form col">
+                    <app-trade-form-items-product-name [index]="i"></app-trade-form-items-product-name>
+
+                    <div class="product-form-money">
+                        <app-trade-form-items-product-qty [index]="i"></app-trade-form-items-product-qty>
+                        <app-trade-form-items-product-okei [index]="i"></app-trade-form-items-product-okei>
+                        <app-trade-form-items-product-price [index]="i"></app-trade-form-items-product-price>
+                        <app-trade-form-items-product-sum [index]="i"></app-trade-form-items-product-sum>
+                    </div>
+                    <hr>
+                    <p-panel header="Дополнительные параметры" [toggleable]="true" [collapsed]="true" toggler="header"
+                        iconPos="start">
+                        <div class="extra col">
+                            <app-trade-form-items-product-type [index]="i"></app-trade-form-items-product-type>
+                            <app-trade-form-items-product-description [index]="i">
+                            </app-trade-form-items-product-description>
+                            <app-trade-form-items-product-okpd2 [index]="i"></app-trade-form-items-product-okpd2>
+                            <app-trade-form-items-product-okved2 [index]="i"></app-trade-form-items-product-okved2>
+                            <app-trade-form-items-product-mark [index]="i"></app-trade-form-items-product-mark>
+                            <app-trade-form-items-product-gost [index]="i"></app-trade-form-items-product-gost>
+                            <app-trade-form-items-product-parameters [index]="i">
+                            </app-trade-form-items-product-parameters>
+                            <app-trade-form-items-product-position-number [index]="i">
+                            </app-trade-form-items-product-position-number>
+                            <app-trade-form-items-product-position-name [index]="i">
+                            </app-trade-form-items-product-position-name>
+                        </div>
+                    </p-panel>
+                </div>
+
+                <button *ngIf="isRemoveProductButtonVisible$ |async" pButton type="button" icon="pi pi-trash"
+                    class="p-button-text p-button-icon-only p-button-rounded p-button-secondary"
+                    (click)="removeProduct(i)">
+                </button>
+            </div>
+
+            <div class="bottom">
+                <button pButton type="button" label="Добавить позицию" icon="pi pi-plus" class="p-button-secondary"
+                    (click)="addProduct()"></button>
+
+                <!-- TODO: Rename -->
+                <app-trade-form-is-manual-price></app-trade-form-is-manual-price>
+                <!-- TODO: Rename -->
+                <app-trade-form-sum-without-vat></app-trade-form-sum-without-vat>
+            </div>
+            <hr>
+            <div class="total">
+                <div class="vat row">
+                    <span>НДС</span>
+                    <app-trade-form-items-is-with-vat></app-trade-form-items-is-with-vat>
+                    <app-trade-form-items-vat></app-trade-form-items-vat>
+                </div>
+                <app-trade-form-items-total></app-trade-form-items-total>
+            </div>
+        </div>
+    </div>
+
+    <div class="block col">
+        <div class="block-title"> ВСЕ УСЛОВИЯ </div>
+
+        <div class="block-body col">
+            <div class="double row">
+                <app-trade-form-details-delivery-region></app-trade-form-details-delivery-region>
+                <app-trade-form-details-delivery-terms></app-trade-form-details-delivery-terms>
+            </div>
+
+            <app-trade-form-details-delivery-address></app-trade-form-details-delivery-address>
+            <app-trade-form-details-delivery-address></app-trade-form-details-delivery-address>
+
+            <div class="double row">
+                <app-trade-form-details-contract-form></app-trade-form-details-contract-form>
+                <app-trade-form-details-payment-conditions></app-trade-form-details-payment-conditions>
+            </div>
+
+            <p-panel header="Дата окончания приема предложений по заказу" [toggleable]="true" [collapsed]="true"
+                toggler="header" iconPos="start">
+                <div class="panel-inner col">
+                    <app-trade-form-details-is-immediate></app-trade-form-details-is-immediate>
+                    <app-trade-form-details-fill-app-end-date></app-trade-form-details-fill-app-end-date>
+                </div>
+            </p-panel>
+
+            <p-panel header="Плановая дата заключения договора" [toggleable]="true" [collapsed]="true" toggler="header"
+                iconPos="start">
+                <div class="panel-inner col">
+                    <app-trade-form-details-planed-deal-date></app-trade-form-details-planed-deal-date>
+                </div>
+            </p-panel>
+
+            <p-panel header="Контактные данные" [toggleable]="true" [collapsed]="true" toggler="header" iconPos="start">
+                <div class="panel-inner col">
+                    <div class="double row">
+                        <app-trade-form-details-contact-fio></app-trade-form-details-contact-fio>
+                        <app-trade-form-details-contact-email></app-trade-form-details-contact-email>
+                    </div>
+                    <div class="double row">
+                        <app-trade-form-details-contact-phone></app-trade-form-details-contact-phone>
+                        <app-trade-form-details-contact-phonetail></app-trade-form-details-contact-phonetail>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+
+    <div class="block col">
+        <div class="block-title"> ПРИГЛАСИТЬ ПРОДАВЦОВ К УЧАСТИЮ В ЗАКАЗЕ </div>
+
+        <div class="block-body col">
+            <p-tabView>
+                <p-tabPanel header="Автоматический подбор">
+                    <div class="panel-inner col">
+                        <app-trade-form-invitation-auto-regions></app-trade-form-invitation-auto-regions>
+                        <app-trade-form-invitation-auto-method></app-trade-form-invitation-auto-method>
+                        <div *ngIf="(invitationMethod$ |async) === 1" class="panel-inner row">
+                            <span> ОКПД2: </span>
+                            <div *ngIf="okpd2Codes$ |async as okpd2Codes; else noOkpds" class="okpd2 col">
+                                <ng-container *ngFor="let okpd of okpd2Codes">
+                                    <strong>{{okpd.code}}</strong> <span>{{okpd.description}}</span>
+                                </ng-container>
+                            </div>
+                            <ng-template #noOkpds> Не выбрано </ng-template>
+                        </div>
+                        <div *ngIf="(invitationMethod$ |async) === 2" class="panel-inner col">
+                            <app-trade-form-invitation-auto-keywords></app-trade-form-invitation-auto-keywords>
+                        </div>
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="Выбрать вручную">
+                    <div class="panel-inner col">
+                        <button pButton type="button" icon="pi pi-file-export" label="Импорт из файла"
+                            class="import-btn p-button-success"></button>
+
+                        <div class="tabview-inner col">
+                            <app-trade-form-invitation-manual-invitated-suppliers>
+                            </app-trade-form-invitation-manual-invitated-suppliers>
+                        </div>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
+
+            <app-trade-form-invitation-auto-is-hide-application></app-trade-form-invitation-auto-is-hide-application>
+        </div>
+    </div>
+
+    <button pButton type="submit" label="Сохранить" class="submit p-button-success"></button>
+</form>

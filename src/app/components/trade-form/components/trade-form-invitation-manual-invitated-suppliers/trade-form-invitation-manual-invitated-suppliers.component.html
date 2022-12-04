@@ -1,0 +1,47 @@
+<p-tabView>
+    <p-tabPanel [header]="'Продавцы в рассылке ' + invitedSuppliers.length">
+        <div class="panel-inner col">
+            <div class="top row">
+                <div class="supplier-list col">
+                    <label> Выберите поставщика из списка </label>
+                    <p-autoComplete #autocomplete [showEmptyMessage]="true" [suggestions]="suppliers" [showClear]="true"
+                        [forceSelection]="true" (completeMethod)="filterOkei($event)" (onSelect)="addOrg($event)"
+                        field="fullName" [minLength]="1">
+                    </p-autoComplete>
+                </div>
+
+                <span class="or row"> или </span>
+
+                <div class="email col">
+                    <label> Введите электронную почту </label>
+                    <input type="text" pInputText (keydown.enter)="addEmail($event)">
+                </div>
+            </div>
+
+            <div class="invited-suppliers col">
+                <div *ngFor="let supplier of invitedSuppliers" class="invited-suppliers-item row">
+                    <span> {{supplier}} </span>
+                    <button pButton pRipple type="button" icon="pi pi-times"
+                        class="p-button-rounded p-button-danger p-button-text" (click)="remove(supplier)"></button>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Расширенный поиск">
+        <div class="panel-inner col">
+            <form [formGroup]="form" class="form" (ngSubmit)="search($event)">
+                <div class="form-item col">
+                    <label> Название или ИНН организации </label>
+                    <input type="text" pInputText formControlName="nameOrInn">
+                </div>
+                <div class="form-item col">
+                    <label> Регион </label>
+                    <p-autoComplete formControlName="region" [showEmptyMessage]="true" [suggestions]="regions"
+                        (completeMethod)="filterRegion($event)" field="label" [minLength]="1"></p-autoComplete>
+                </div>
+                <button type="submit" pButton pRipple label="Найти" class="p-button-outlined p-button-success">
+                </button>
+            </form>
+        </div>
+    </p-tabPanel>
+</p-tabView>

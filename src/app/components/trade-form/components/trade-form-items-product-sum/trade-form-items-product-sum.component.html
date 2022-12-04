@@ -1,0 +1,5 @@
+<ng-container *ngIf="sum$ |async as sum; else noSum">
+    {{sum |currency}}
+</ng-container>
+
+<ng-template #noSum> Не определена </ng-template>

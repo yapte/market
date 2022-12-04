@@ -1,0 +1,3 @@
+<label> Адрес поставки </label>
+<p-autoComplete [formControl]="control" [showEmptyMessage]="true" [suggestions]="suggestions"
+    (completeMethod)="filterAddress($event)" field="label" [minLength]="1"></p-autoComplete>

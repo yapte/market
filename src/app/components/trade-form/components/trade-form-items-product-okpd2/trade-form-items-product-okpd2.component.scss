@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+        align-items: center;
+    }
+
+    p-multiselect::ng-deep {
+        .p-multiselect {
+            width: 100%;
+            max-width: 50vw;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .top {
+        display: grid;
+        grid-template-columns: 1fr 60px 1fr;
+        gap: 24px;
+
+        .or {
+            padding-top: 40px;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--surface-600);
+        }
+
+        .supplier-list {
+            p-autocomplete::ng-deep {
+                .p-autocomplete {
+                    width: 100%;
+
+                    &-input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        // .email {}
+    }
+
+
+    .invited-suppliers {
+        &-item {
+            align-items: center;
+        }
+    }
+
+    .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr 120px;
+        gap: 24px;
+
+        &-item {
+            p-autocomplete::ng-deep {
+                .p-autocomplete {
+                    width: 100%;
+
+                    &-input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        button {
+            align-self: flex-end;
+        }
+    }
+}

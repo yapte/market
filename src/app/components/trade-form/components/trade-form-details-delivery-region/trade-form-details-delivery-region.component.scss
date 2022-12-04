@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    p-autoComplete {
+        ::ng-deep {
+            .p-autocomplete {
+                width: 100%;
+
+                input {
+                    flex: 1 1 0;
+                }
+            }
+        }
+    }
+}

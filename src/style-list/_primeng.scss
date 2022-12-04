@@ -1,0 +1,63 @@
+.p-inputtext {
+    &.ng-touched.ng-invalid {
+        border-color: var(--pink-600);
+    }
+}
+
+.p-inputtextarea {
+    &.ng-touched.ng-invalid {
+        border-color: var(--pink-600);
+    }
+}
+
+.p-panel {
+    .p-panel-header {
+        background-color: white;
+        border-radius: 8px;
+        border: none;
+        padding: 24px;
+    }
+
+    &.p-panel-expanded {
+        .p-panel-header {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    &.p-panel-toggleable {
+        .p-panel-header {
+            padding: 24px;
+        }
+    }
+
+    .p-panel-content {
+        border: none;
+    }
+}
+
+.p-tabview .p-tabview-nav {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.p-fileupload {
+    .p-fileupload-buttonbar {
+        border: solid 1px red;
+        display: none;
+    }
+
+    .p-fileupload-content {
+        background-color: var(--surface-100);
+        border-radius: 0;
+        border: none;
+
+        p-messages {
+            display: none;
+        }
+
+        .p-fileupload-files {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+
+    .calculated-sum {
+        font-size: 22px;
+        text-transform: uppercase;
+    }
+}

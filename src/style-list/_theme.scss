@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color-text);
+}
+
+textarea {
+    resize: vertical;
+}
+
+label span.required {
+    color: var(--surface-600);
+}
+
+hr {
+    margin: 24px 0;
+    border: none;
+    border-top: solid 1px var(--surface-200);
+}
+
+// input,
+// textarea {
+//     padding: 12px;
+//     border: solid 1px #444;
+//     border-radius: 6px;
+//     background-color: transparent;
+//     outline-width: 1px;
+
+//     &.ng-touched.ng-invalid {
+//         border-color: red;
+//     }
+// }
+
+p {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 12px;
+    background-color: var(--text-color);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--surface-200);
+}

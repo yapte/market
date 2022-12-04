@@ -1,0 +1,27 @@
+<div class="files col">
+    <div *ngFor="let file of files; let i = index" class="file row">
+        <i class="pi pi-file" size="2rem"></i>
+        <div class="name">
+            {{file.name}}
+            <span class="size">({{(file.size / 1024) | number:'1.0-2'}}KB) </span>
+        </div>
+        <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-text p-button-danger"
+            (click)="removeAt(i)"></button>
+    </div>
+</div>
+
+<div class="blocks">
+    <p-fileUpload name="myfile[]" [customUpload]="true" [multiple]="true" [auto]="true"
+        (uploadHandler)="uploadhandler($event)">
+        <ng-template pTemplate="content" let-files>
+            <div class="center">
+                <span class="blue"> Выберите файл на компьютере </span>
+                <span class="gray"> или перетащите сюда для загрузки </span>
+            </div>
+        </ng-template>
+    </p-fileUpload>
+
+    <button pButton pRipple type="button" class="p-button-secondary from-lk-button">
+        Прикрепить файл из личного кабинета
+    </button>
+</div>

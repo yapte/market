@@ -1,0 +1,57 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+
+    .files {
+        align-items: flex-start;
+        padding: 12px 0;
+
+        .file {
+            align-items: center;
+
+            i {
+                color: var(--blue-400);
+                font-size: 24px;
+            }
+
+            .size {
+                color: var(--surface-600);
+            }
+        }
+    }
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .blue {
+        color: var(--blue-500);
+        font-weight: 600;
+    }
+
+    .grey {
+        color: var(--surface-600);
+    }
+}
+
+.blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    .from-lk-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--blue-500);
+        font-weight: 600;
+        background-color: var(--surface-100);
+        border-radius: 0;
+        border: none;
+    }
+}

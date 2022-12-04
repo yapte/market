@@ -1,0 +1,122 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    .block {
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 0 24px 0 rgba(0, 0, 0, .12);
+
+        &-title {
+            border-bottom: solid 1px var(--surface-200);
+            padding: 24px;
+            font-weight: 600;
+        }
+
+        &-body {
+            padding: 24px;
+            gap: 24px;
+        }
+    }
+
+    .required-info {
+        color: var(--surface-600);
+    }
+
+    .eis-panel::ng-deep {
+        .p-panel-header {
+            justify-content: space-between;
+        }
+    }
+
+    .is-eis {
+        width: max-content;
+    }
+
+    .product {
+        display: grid;
+        grid-template-columns: 48px 1fr 48px;
+        border-radius: 6px;
+        padding: 12px;
+        background-color: var(--surface-200);
+
+        &-number {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--surface-600);
+        }
+
+        &-form {
+            padding: 12px 0;
+
+            &-money {
+                display: flex;
+                gap: 12px;
+
+                &>* {
+                    flex: 0 0 calc(25% - 9px);
+                }
+            }
+
+            .extra {
+                padding: 0 4px;
+            }
+        }
+    }
+
+    .bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        align-items: center;
+        gap: 12px;
+
+        button {
+            justify-self: start;
+        }
+    }
+
+    .total {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+
+        .vat {
+            align-items: center;
+        }
+    }
+
+    .double {
+        gap: 24px;
+
+        &>* {
+            flex: 0 0 calc(50% - 12px);
+        }
+    }
+
+    .panel-inner {
+        gap: 24px;
+        padding: 0 4px;
+    }
+
+    .tabview-inner {
+        padding: 12px 0 12px 12px;
+        border: solid 1px var(--surface-200);
+        border-radius: 8px;
+    }
+
+    .okpd2 {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+
+    button.import-btn {
+        align-self: flex-start;
+    }
+
+    button.submit {
+        align-self: flex-end;
+    }
+}

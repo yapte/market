@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-200);
+
+    .wrap {
+        padding: 24px 0;
+    }
+
+    h2 {
+        padding: 0 24px;
+    }
+}
