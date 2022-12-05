@@ -2,4 +2,12 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+
+    i {
+        color: var(--pink-600);
+    }
+
+    input {
+        width: 100%;
+    }
 }

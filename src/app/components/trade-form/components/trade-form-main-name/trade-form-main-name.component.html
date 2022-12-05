@@ -1,2 +1,6 @@
 <label> Название <span class="reqiured"> * </span> </label>
-<input type="text" pInputText [formControl]="control" [placeholder]="placeholder$ |async">
+<span class="p-input-icon-right">
+    <i *ngIf="control.touched && control.invalid" class="pi pi-info-circle" pTooltip="Хуёво заполнено"
+        tooltipPosition="top"></i>
+    <input type="text" pInputText [formControl]="control" [placeholder]="placeholder$ |async">
+</span>
