@@ -5,10 +5,20 @@ import { distinctUntilChanged, map, shareReplay, startWith, takeUntil, tap } fro
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Destroy$ } from 'src/app/helpers/destroy';
 import { Okpd2 } from 'src/app/helpers/okpd2.interface';
+import { TradeFormGenerator } from './trade-form-generator.factory';
+import { TenantDependentText } from 'src/app/tenants/tenant-dependent-text.service';
+import { TenantService } from 'src/app/tenants/tenant.service';
 
 @Injectable()
 export class TradeFormFacadeService extends Destroy$ {
     private _form: FormGroup;
+
+    constructor(
+        private _tenantDependentText: TenantDependentText,
+        private _tenantService: TenantService,
+    ) {
+        super();
+    }
 
     get form(): FormGroup {
         return this._form;
@@ -27,69 +37,7 @@ export class TradeFormFacadeService extends Destroy$ {
     // TODO: Методы с генерацией форм можно вфнести в отдельный класс со СТАТИЧЕСКИМИ методами,
     // чтобы никому не приходило в голову вставлять этот класс с помощью DI.
     private _generateForm(): void {
-        this._form = new FormGroup({
-            main: new FormGroup({
-                tradeName: new FormControl('', [Validators.required]),
-                description: new FormControl(),
-                smsp: new FormControl(),
-                isImportPhaseout: new FormControl(),
-                isOnlySmp: new FormControl(),
-                tradeDocuments: new FormControl(),
-                isSendToEis: new FormControl(),
-                workGroupIds: new FormControl(),
-            }),
-            items: new FormGroup({
-                products: new FormArray([
-                    this._generateProductFormItem(),
-                ]),
-                conditionsOfVat: new FormControl(),
-                initialPriceWithoutVat: new FormControl(),
-                isManualEnterPriceForEachProduct: new FormControl(),
-                initialPriceWithVat: new FormControl(),
-                rateVat: new FormControl({ value: null, disabled: true }),
-                isLotPriceWithVat: new FormControl(false),
-            }),
-            details: new FormGroup({
-                deliveryRegion: new FormControl(),
-                deliveryPlace: new FormControl(),
-                deliveryTerms: new FormControl(),
-                kladrRegionCode: new FormControl(),
-                kladrRegionCodes: new FormControl(),
-                isContractInElectronicForm: new FormControl(true),
-                conditionsOfPayment: new FormControl(),
-                isImmediate: new FormControl(),
-                fillingApplicationEndDate: new FormControl(),
-                planedDealSignDate: new FormControl(),
-                contactInfo: new FormGroup({
-                    fio: new FormControl('', [Validators.required]),
-                    contactPhone: new FormControl(),
-                    contactPhoneTail: new FormControl(),
-                    contactEmail: new FormControl(),
-                }),
-                minQuantityOfDeliveredGoods: new FormControl(),
-                characteristicFileGuid: new FormControl(),
-                invitedOrganizationIds: new FormControl(),
-            }),
-            invitation: new FormGroup({
-                invitations: new FormControl([]),
-                invitationMethod: new FormControl(1),
-                isHideApplication: new FormControl(),
-
-                invitationRegions: new FormControl([]),
-                invitationTags: new FormControl([]),
-            }),
-            eisInfo: new FormGroup({
-                oosPurchaseMethodCode: new FormControl(),
-                notDishonest: new FormControl(),
-                isEmergency: new FormControl(),
-                applicationRequestOrder: new FormControl(),
-                resultsReviewOrder: new FormControl(),
-                planRegistrationNumber: new FormControl(),
-                planPositionNumber: new FormControl(),
-                isSupplierCanCreateContract: new FormControl(),
-            }),
-        });
-
+        this._form = TradeFormGenerator.generateForm(this._tenantService.currentTenant);
         // this.isSendToEis$ = this.getField('main', 'isSendToEis').valueChanges;
 
         this.namePlaceholder$ = (this.getField('items', 'products') as FormArray)
@@ -100,7 +48,8 @@ export class TradeFormFacadeService extends Destroy$ {
                     if (value.length === 1) return name;
                     return `${name} и т.д.`
                 }),
-                startWith('Введите название заказа или оно будет выбрано из наименования товара'),
+                startWith(this._tenantDependentText.TRADE_NAME_PLACEHOLDER),
+                startWith(''),
                 distinctUntilChanged(),
             );
 
@@ -159,32 +108,6 @@ export class TradeFormFacadeService extends Destroy$ {
             );
     }
 
-    private _generateProductFormItem(isManualInput = false): FormGroup {
-        return new FormGroup({
-            id: new FormControl(),
-            name: new FormControl(),
-            quantity: new FormControl(),
-            okeiObject: new FormControl(),
-            classificatorCode: new FormControl(),
-            price: new FormControl({ value: null, disabled: !isManualInput }),
-            sum: new FormControl(),
-            classificatorType: new FormControl(),
-            classificatorDescription: new FormControl(),
-            type: new FormControl(),
-            vatRate: new FormControl(),
-            sumVat: new FormControl(),
-            mark: new FormControl(),
-            parameters: new FormControl(),
-            gost: new FormControl(),
-            description: new FormControl(),
-            okved2Code: new FormControl(),
-            shortOkeiName: new FormControl(),
-            okpd2Codes: new FormControl(),
-            userDictionaryPositionNumber: new FormControl(),
-            userDictionaryPositionName: new FormControl(),
-        });
-    }
-
     init() {
         this._generateForm();
     }
@@ -205,7 +128,7 @@ export class TradeFormFacadeService extends Destroy$ {
     appendProduct() {
         const isManualInput: boolean = this.getField('items', 'isManualEnterPriceForEachProduct').value;
         (this.getField('items', 'products') as FormArray)
-            .push(this._generateProductFormItem(isManualInput));
+            .push(TradeFormGenerator.generateProductFormItem(this._tenantService.currentTenant, isManualInput));
     }
 
     removeProduct(index: number) {

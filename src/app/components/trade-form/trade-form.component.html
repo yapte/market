@@ -46,6 +46,8 @@
 
                 <div class="product-form col">
                     <app-trade-form-items-product-name [index]="i"></app-trade-form-items-product-name>
+                    <app-trade-form-items-product-okpd2 *showIfTenant="[TenantCode.PreliminaryOffer]"
+                        [index]="i"></app-trade-form-items-product-okpd2>
 
                     <div class="product-form-money">
                         <app-trade-form-items-product-qty [index]="i"></app-trade-form-items-product-qty>
@@ -60,7 +62,8 @@
                             <app-trade-form-items-product-type [index]="i"></app-trade-form-items-product-type>
                             <app-trade-form-items-product-description [index]="i">
                             </app-trade-form-items-product-description>
-                            <app-trade-form-items-product-okpd2 [index]="i"></app-trade-form-items-product-okpd2>
+                            <app-trade-form-items-product-okpd2 *dontShowIfTenant="[TenantCode.PreliminaryOffer]"
+                                [index]="i"></app-trade-form-items-product-okpd2>
                             <app-trade-form-items-product-okved2 [index]="i"></app-trade-form-items-product-okved2>
                             <app-trade-form-items-product-mark [index]="i"></app-trade-form-items-product-mark>
                             <app-trade-form-items-product-gost [index]="i"></app-trade-form-items-product-gost>
@@ -110,7 +113,6 @@
                 <app-trade-form-details-delivery-terms></app-trade-form-details-delivery-terms>
             </div>
 
-            <app-trade-form-details-delivery-address></app-trade-form-details-delivery-address>
             <app-trade-form-details-delivery-address></app-trade-form-details-delivery-address>
 
             <div class="double row">

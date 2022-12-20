@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    input {
+        padding: 8px;
+        border-radius: 6px;
+        border: solid 1px #dcdcdc;
+    }
+}

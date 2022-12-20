@@ -1,0 +1,15 @@
+<h5> {{data.title}} </h5>
+
+<div class="toggle">
+    <span> Все </span>
+    <input type="checkbox" (change)="toggleOnlyActual($event)">
+    <span> Только актуальные </span>
+</div>
+
+<!-- <div class="col"> -->
+<label *ngFor="let item of items">
+    <input type="checkbox" [checked]="value.includes(+item.id)" (change)="toggleItem($event, +item.id)">
+    <div class="dot" [ngStyle]="{backgroundColor: item.color}"></div>
+    <span> {{item.name}} </span>
+</label>
+<!-- </div> -->

@@ -5,6 +5,7 @@ import { TradeFormFacadeService } from './trade-form-facade.service';
 import { HandledError } from './../../helpers/handled-error';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { Okpd2 } from 'src/app/helpers/okpd2.interface';
+import { TenantCode } from 'src/app/helpers/tenant-code.enum';
 
 @Component({
     selector: 'trade-form',
@@ -13,6 +14,7 @@ import { Okpd2 } from 'src/app/helpers/okpd2.interface';
     providers: [TradeFormFacadeService],
 })
 export class TradeFormComponent {
+    TenantCode = TenantCode;
     form: FormGroup;
     isRemoveProductButtonVisible$: Observable<boolean>;
     invitationMethod$: Observable<number>;

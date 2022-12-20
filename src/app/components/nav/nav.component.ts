@@ -21,7 +21,7 @@ export class NavComponent {
         },
         {
           label: 'Все закупки',
-          routerLink: ['/'],
+          routerLink: ['/trade-list'],
         },
         {
           separator: true

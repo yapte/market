@@ -2,7 +2,15 @@
 <app-nav></app-nav>
 
 <main>
-  <router-outlet></router-outlet>
+  <ng-container *ngIf="currentTenant$ |async; else tenantChangeInProgress">
+    <router-outlet></router-outlet>
+  </ng-container>
 </main>
 
 <app-footer></app-footer>
+
+<ng-template #tenantChangeInProgress>
+  <div class="in-progress">
+    Смена тенанта
+  </div>
+</ng-template>

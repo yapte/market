@@ -9,8 +9,8 @@
 
     p-multiselect::ng-deep {
         .p-multiselect {
-            width: 100%;
-            max-width: 50vw;
+            min-width: 50%;
+            max-width: 100%;
         }
     }
 }

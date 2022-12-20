@@ -3,5 +3,6 @@
     <i class="pi pi-question-circle" tooltipPosition="top"
         pTooltip="Код товара / услуги согласно общероссийскому классификатору продукции по видам экономической деятельности.">
     </i>
+    <span *showIfTenant="[TenantCode.PreliminaryOffer]" class="required"> * </span>
 </label>
 <p-multiSelect [options]="codes" [formControl]="control" optionLabel="description" display="chip"></p-multiSelect>

@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipsModule } from 'primeng/chips';
+import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -78,15 +79,17 @@ import { TradeFormEisPlanNumberComponent } from './components/trade-form/compone
 import { TradeFormEisPlanPositionNumberComponent } from './components/trade-form/components/trade-form-eis-plan-position-number/trade-form-eis-plan-position-number.component';
 
 import { TradeFormItemsIsWithVatComponent } from './components/trade-form/components/trade-form-items-is-with-vat/trade-form-items-is-with-vat.component';
-import { ShowIfTenantDirective } from './directives/show-if-tenant.directive';
-import { QwertyDirective } from './directives/qwerty.directive';
+import { ShowIfTenantDirective } from './tenants/show-if-tenant.directive';
+import { CitiesStoreAutocompleteDirective } from './directives/cities-store-autoocomplete.directive';
 import { TradeFormInvitationAutoRegionsComponent } from './components/trade-form/components/trade-form-invitation-auto-regions/trade-form-invitation-auto-regions.component';
 import { TradeFormInvitationAutoIsHideApplicationComponent } from './components/trade-form/components/trade-form-invitation-auto-is-hide-application/trade-form-invitation-auto-is-hide-application.component';
 import { TradeFormInvitationAutoMethodComponent } from './components/trade-form/components/trade-form-invitation-auto-method/trade-form-invitation-auto-method.component';
 import { TradeFormMainIsEisComponent } from './components/trade-form/components/trade-form-main-is-eis/trade-form-main-is-eis.component';
 import { TradeFormInvitationAutoKeywordsComponent } from './components/trade-form/components/trade-form-invitation-auto-keywords/trade-form-invitation-auto-keywords.component';
 import { TradeFormInvitationManualInvitatedSuppliersComponent } from './components/trade-form/components/trade-form-invitation-manual-invitated-suppliers/trade-form-invitation-manual-invitated-suppliers.component';
-import { DontShowIfTenantDirective } from './directives/dont-show-if-tenant.directive';
+import { DontShowIfTenantDirective } from './tenants/dont-show-if-tenant.directive';
+import { TradeListPageComponent } from './pages/trade-list-page/trade-list-page.component';
+import { FiltersModule } from './shared/filters/filters.module';
 
 
 registerLocaleData(localeRu);
@@ -101,7 +104,7 @@ registerLocaleData(localeRu);
 
     ShowIfTenantDirective,
     DontShowIfTenantDirective,
-    QwertyDirective,
+    CitiesStoreAutocompleteDirective,
 
     HomePageComponent,
     TradeCreatePageComponent,
@@ -154,6 +157,7 @@ registerLocaleData(localeRu);
     TradeFormMainIsEisComponent,
     TradeFormInvitationAutoKeywordsComponent,
     TradeFormInvitationManualInvitatedSuppliersComponent,
+    TradeListPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -163,11 +167,14 @@ registerLocaleData(localeRu);
     HttpClientModule,
     AppRoutingModule,
 
+    FiltersModule,
+
     AutoCompleteModule,
     ButtonModule,
     CalendarModule,
     CheckboxModule,
     ChipsModule,
+    DialogModule,
     DropdownModule,
     FileUploadModule,
     InputMaskModule,

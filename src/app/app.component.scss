@@ -6,4 +6,15 @@
         min-height: 110vh;
         margin: 24px 0;
     }
+
+    .in-progress {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 36px;
+        font-weight: 200;
+        text-transform: uppercase;
+        color: var(--primary-color);
+    }
 }

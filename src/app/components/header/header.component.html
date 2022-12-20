@@ -1,6 +1,9 @@
 <div class="wrap container row">
-    <p> LINKS </p>
+    <p> HEADER </p>
     <div class="links row">
+        <button pButton pRipple type="button" [label]="buttonText$ |async" class="p-button-outlined p-button-rounded"
+            (click)="showTenantDialog()"></button>
+
         <a href="https://github.com/yapte/market/tree/main/src" target="_blank" pButton pRipple
             class="p-button-rounded p-button-help row">
             Project
@@ -8,3 +11,13 @@
         </a>
     </div>
 </div>
+
+<p-dialog header="Выбор тенанта" [(visible)]="isTenantDialogShown" [modal]="true">
+    <div class="col">
+        <label *ngFor="let t of tenantList">
+            <p-radioButton name="qwerty" [value]="t" [ngModel]="currentTenant$ |async"
+                (ngModelChange)="setTenantCode(t)"></p-radioButton>
+            {{TENANT_NAMES[t]}}
+        </label>
+    </div>
+</p-dialog>

@@ -2,10 +2,13 @@ import { Directive } from '@angular/core';
 import { AutoComplete } from 'primeng/autocomplete';
 import { CITIES } from '../components/trade-form/constants/cities.const';
 
+/**
+ * Один вариантов использования директивы для кастомизации работы автокомплита
+ */
 @Directive({
-  selector: 'p-autoComplete[appQwerty]'
+  selector: 'p-autoComplete[citiesStore]'
 })
-export class QwertyDirective {
+export class CitiesStoreAutocompleteDirective {
 
   constructor(private _el: AutoComplete) {
     // this._el.suggestions = SUGGESTIONS;

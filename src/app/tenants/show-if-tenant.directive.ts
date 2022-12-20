@@ -1,6 +1,6 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { TenantCode } from '../helpers/tenant-code.enum';
-import { TenantService } from '../services/tenant.service';
+import { TenantService } from './tenant.service';
 
 @Directive({
   selector: '[showIfTenant]'
