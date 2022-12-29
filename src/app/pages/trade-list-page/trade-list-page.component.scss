@@ -4,10 +4,120 @@
     background-color: var(--surface-200);
 
     .wrap {
+        display: grid;
+        grid-template-areas:
+            'title title'
+            'filters catalog';
+        grid-template-columns: 300px 1fr;
         padding: 24px 0;
     }
 
     h2 {
         padding: 0 24px;
+        grid-area: title;
     }
+
+    .filters {
+        padding: 12px;
+        grid-area: filters;
+        background-color: white;
+        border-radius: 12px;
+
+        &-title {
+            padding: 12px;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 100;
+            color: var(--surface-600)
+        }
+
+        fieldset.dates {
+            gap: 12px;
+        }
+    }
+
+    .catalog {
+        grid-area: catalog;
+        align-self: start;
+
+        display: grid;
+        grid-template-areas:
+            'total sort toggle'
+            'body body body'
+            'pagination pagination pagination';
+        grid-template-columns: 100px 2fr 120px;
+        grid-template-rows: min-content 1fr min-content;
+        gap: 24px;
+        align-items: center;
+        align-content: center;
+        padding: 12px;
+        background-color: white;
+        border-radius: 12px;
+
+        &-total {
+            grid-area: total;
+        }
+
+        &-sort {
+            grid-area: sort;
+            align-self: stretch;
+            justify-self: end;
+            display: flex;
+            align-items: center;
+
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--surface-200);
+
+            &-title {
+                font-weight: 600;
+                color: var(--surface-600);
+            }
+        }
+
+        &-toggle {
+            grid-area: toggle;
+            align-self: center;
+            justify-self: end;
+        }
+
+        &-body {
+            grid-area: body;
+
+            display: grid;
+            gap: 24px;
+
+            &-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            &-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        &-pagination {
+            grid-area: pagination;
+        }
+    }
+}
+
+.grid-item {
+    border: solid 1px var(--surface-200);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    min-height: 320px;
+}
+
+.list-item {
+    border: solid 1px var(--surface-200);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
 }

@@ -1,0 +1,11 @@
+<h5> {{data.title}} </h5>
+
+<div class="inputs">
+    <p-inputNumber [(ngModel)]="value[0]" mode="currency" currency="RUB" locale="ru-RU" (onBlur)="setParams()">
+    </p-inputNumber>
+
+    <span> - </span>
+
+    <p-inputNumber [(ngModel)]="value[1]" mode="currency" currency="RUB" locale="ru-RU"
+        (onBlur)="setParams()"></p-inputNumber>
+</div>

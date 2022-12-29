@@ -1,0 +1,32 @@
+p-triStateCheckbox {
+    ::ng-deep {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        cursor: pointer;
+
+        .p-checkbox {
+
+            .p-checkbox-box {
+                border: none;
+                outline: none;
+
+                &.p-focus {
+                    box-shadow: none;
+                }
+
+                &.p-highlight {
+                    background-color: transparent;
+                }
+
+                .p-checkbox-icon {
+                    color: var(--primary-color);
+                }
+            }
+        }
+
+        .p-checkbox-label-active {
+            color: var(--primary-color);
+        }
+    }
+}

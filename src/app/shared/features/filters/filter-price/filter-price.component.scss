@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+
+    p-inputNumber {
+        width: calc(50% - 12px);
+
+        ::ng-deep {
+            input {
+                width: 100%;
+            }
+        }
+    }
+}

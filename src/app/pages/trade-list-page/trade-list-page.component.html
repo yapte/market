@@ -1,27 +1,82 @@
 <div class="wrap container col">
     <h2> Все закупки </h2>
-    <div class="filters">
-        <filter-status></filter-status>
-        <filter-msp></filter-msp>
-        <filter-customer-organizer></filter-customer-organizer>
-        <filter-order-id></filter-order-id>
-        <filter-price></filter-price>
-        <filter-delivery-regions></filter-delivery-regions>
-        <filter-okpd2></filter-okpd2>
-        <filter-immediate></filter-immediate>
+    <div class="filters col">
+        <p class="filters-title"> Фильтры </p>
+        <fieldset>
+            <filter-status></filter-status>
+        </fieldset>
+        <fieldset>
+            <filter-msp></filter-msp>
+        </fieldset>
+        <fieldset>
+            <filter-customer-organizer></filter-customer-organizer>
+        </fieldset>
+        <fieldset>
+            <filter-order-id></filter-order-id>
+        </fieldset>
+        <fieldset>
+            <filter-price></filter-price>
+        </fieldset>
+        <fieldset>
+            <filter-delivery-regions></filter-delivery-regions>
+        </fieldset>
+        <fieldset>
+            <filter-okpd2></filter-okpd2>
+        </fieldset>
+        <fieldset>
+            <filter-immediate></filter-immediate>
+        </fieldset>
 
-        <div class="ya-filters-dates">
+        <fieldset class="dates">
             <h5> ДАТА ПУБЛИКАЦИИ </h5>
-            <filter-publication-date-from></filter-publication-date-from>
-            <filter-publication-date-to></filter-publication-date-to>
-        </div>
+            <div class="row">
+                <filter-publication-date-from></filter-publication-date-from>
+                <filter-publication-date-to></filter-publication-date-to>
+            </div>
+        </fieldset>
 
-        <hr>
-
-        <filter-import-phaseout></filter-import-phaseout>
-        <filter-in-stock></filter-in-stock>
-        <filter-country></filter-country>
+        <fieldset>
+            <filter-import-phaseout></filter-import-phaseout>
+        </fieldset>
+        <fieldset>
+            <filter-in-stock></filter-in-stock>
+        </fieldset>
+        <fieldset>
+            <filter-country></filter-country>
+        </fieldset>
     </div>
 
-    <div class="catalog"></div>
+    <div class="catalog">
+        <div class="catalog-total"> Найдено: {{12}} </div>
+
+        <div class="catalog-sort">
+            <span class="catalog-sort-title"> Сортировка: </span>
+            <sort [data]="Sorts.Relevance"></sort>
+            <sort [data]="Sorts.UnitePrice"></sort>
+            <sort [data]="Sorts.PublicationDate"></sort>
+        </div>
+
+        <p-selectButton class="catalog-toggle" [options]="views" [(ngModel)]="currentView" optionValue="value">
+            <ng-template let-item><i [class]="item.icon"></i> </ng-template>
+        </p-selectButton>
+
+        <div [ngClass]="{
+                'catalog-body': true, 
+                'catalog-body-grid': currentView === 'grid', 
+                'catalog-body-list': currentView === 'list'
+            }">
+
+            <ng-container *ngIf="currentView === 'grid'">
+                <app-trade-grid-card *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" class="grid-item"
+                    @titleAnimation></app-trade-grid-card>
+            </ng-container>
+
+            <ng-container *ngIf="currentView === 'list'">
+                <app-trade-list-card *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" class="list-item" @titleAnimation>
+                </app-trade-list-card>
+            </ng-container>
+
+        </div>
+        <p-paginator class="catalog-pagination" [rows]="10" [totalRecords]="100"></p-paginator>
+    </div>
 </div>

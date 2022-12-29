@@ -19,11 +19,14 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PaginatorModule } from 'primeng/paginator';
 import { PanelModule } from 'primeng/panel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TabViewModule } from 'primeng/tabview';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TooltipModule } from 'primeng/tooltip';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -80,7 +83,7 @@ import { TradeFormEisPlanPositionNumberComponent } from './components/trade-form
 
 import { TradeFormItemsIsWithVatComponent } from './components/trade-form/components/trade-form-items-is-with-vat/trade-form-items-is-with-vat.component';
 import { ShowIfTenantDirective } from './tenants/show-if-tenant.directive';
-import { CitiesStoreAutocompleteDirective } from './directives/cities-store-autoocomplete.directive';
+import { CitiesStoreAutocompleteDirective } from './shared/directives/cities-store-autoocomplete.directive';
 import { TradeFormInvitationAutoRegionsComponent } from './components/trade-form/components/trade-form-invitation-auto-regions/trade-form-invitation-auto-regions.component';
 import { TradeFormInvitationAutoIsHideApplicationComponent } from './components/trade-form/components/trade-form-invitation-auto-is-hide-application/trade-form-invitation-auto-is-hide-application.component';
 import { TradeFormInvitationAutoMethodComponent } from './components/trade-form/components/trade-form-invitation-auto-method/trade-form-invitation-auto-method.component';
@@ -89,7 +92,10 @@ import { TradeFormInvitationAutoKeywordsComponent } from './components/trade-for
 import { TradeFormInvitationManualInvitatedSuppliersComponent } from './components/trade-form/components/trade-form-invitation-manual-invitated-suppliers/trade-form-invitation-manual-invitated-suppliers.component';
 import { DontShowIfTenantDirective } from './tenants/dont-show-if-tenant.directive';
 import { TradeListPageComponent } from './pages/trade-list-page/trade-list-page.component';
-import { FiltersModule } from './shared/filters/filters.module';
+import { FiltersModule } from './shared/features/filters/filters.module';
+import { SortModule } from './shared/features/sort/sort.module';
+import { TradeGridCardComponent } from './shared/components/trade-grid-card/trade-grid-card.component';
+import { TradeListCardComponent } from './shared/components/trade-list-card/trade-list-card.component';
 
 
 registerLocaleData(localeRu);
@@ -104,7 +110,6 @@ registerLocaleData(localeRu);
 
     ShowIfTenantDirective,
     DontShowIfTenantDirective,
-    CitiesStoreAutocompleteDirective,
 
     HomePageComponent,
     TradeCreatePageComponent,
@@ -167,7 +172,11 @@ registerLocaleData(localeRu);
     HttpClientModule,
     AppRoutingModule,
 
+    CitiesStoreAutocompleteDirective,
     FiltersModule,
+    SortModule,
+    TradeGridCardComponent,
+    TradeListCardComponent, 
 
     AutoCompleteModule,
     ButtonModule,
@@ -183,11 +192,14 @@ registerLocaleData(localeRu);
     InputTextModule,
     MenubarModule,
     MultiSelectModule,
+    PaginatorModule,
     PanelModule,
     RadioButtonModule,
     SelectButtonModule,
     TabViewModule,
+    ToggleButtonModule,
     TooltipModule,
+    TriStateCheckboxModule,
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'RUB' },

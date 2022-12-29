@@ -1,0 +1,7 @@
+<h5> {{data.title}} </h5>
+
+<p class="subtitle">
+    Прием предложений по срочным заказам осуществляется в течение рабочего дня, следующего за днем публикации
+</p>
+
+<p-checkbox [(ngModel)]="value" [binary]="true" [label]="data.title" (onChange)="toggle()"></p-checkbox>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { TradeFormFacadeService } from './trade-form-facade.service';
-import { HandledError } from './../../helpers/handled-error';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { Okpd2 } from 'src/app/helpers/okpd2.interface';
 import { TenantCode } from 'src/app/helpers/tenant-code.enum';
@@ -28,7 +27,6 @@ export class TradeFormComponent {
     ngOnInit(): void {
         this._facade.init();
         this.form = this._facade.form;
-        // this.form.valueChanges.subscribe(value => console.log(value));
         this.isRemoveProductButtonVisible$ = this._facade.isRemoveProductButtonVisible$;
         this.invitationMethod$ = this._facade.invitationMethod$;
         this.okpd2Codes$ = this._facade.okpd2Codes$;

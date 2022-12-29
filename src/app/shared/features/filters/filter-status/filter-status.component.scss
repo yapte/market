@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toggle {
+    align-items: center;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #ccc;
+
+    &.red {
+        background-color: red;
+    }
+
+    &.green {
+        background-color: green;
+    }
+
+    &.blue {
+        background-color: blue;
+    }
+
+    &.yellow {
+        background-color: yellow;
+    }
+}

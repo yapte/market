@@ -1,0 +1,6 @@
+<h5> {{data.title}} </h5>
+
+<label *ngFor="let item of items">
+    <p-checkbox [(ngModel)]="values" [value]="item.id" (onChange)="toggleItem()"></p-checkbox>
+    <span> {{item.name}} </span>
+</label>

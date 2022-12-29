@@ -30,12 +30,9 @@ export class HeaderComponent {
     this.isTenantDialogShown = true;
   }
 
-  // hideTenantDialog() {
-  //   this.isTenantDialogShown = false;
-  // }
-
   setTenantCode(tenantCode: TenantCode) {
     this._tenantService.setTenantCode(tenantCode);
+    this.isTenantDialogShown = false;
   }
 
 }

@@ -43,6 +43,19 @@ hr {
     border-top: solid 1px var(--surface-200);
 }
 
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px 12px;
+    border: solid 1px var(--surface-200);
+    border-radius: 12px;
+}
+
+h5 {
+    margin: 0;
+}
+
 // input,
 // textarea {
 //     padding: 12px;

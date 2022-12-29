@@ -1,8 +1,0 @@
-<h5> {{data.title}} </h5>
-
-<!-- <div class="col"> -->
-<label *ngFor="let item of items">
-    <input type="checkbox" [checked]="value.includes(+item.id)" (change)="toggleItem($event, +item.id)">
-    <span> {{item.name}} </span>
-</label>
-<!-- </div> -->
