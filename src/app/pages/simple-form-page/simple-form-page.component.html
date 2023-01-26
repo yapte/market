@@ -1,0 +1,43 @@
+<div class="wrap container col">
+    <h2> Simple form managment </h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="col">
+        <div class="col item">
+            <label> Name </label>
+            <input type="text" pInputText formControlName="name">
+        </div>
+        <div class="col item">
+            <label> Description </label>
+            <textarea pInputTextarea formControlName="description" rows="4"></textarea>
+        </div>
+        <div class="col item">
+            <p-checkbox label="Required" [binary]="true" formControlName="isRequired"></p-checkbox>
+        </div>
+
+        <div formArrayName="products" class="products col">
+            <h4> Products </h4>
+
+            <div *ngFor="let productForm of products; let index = index" [formGroupName]="index"
+                class="products-item col">
+                <div class="col item">
+                    <label> Product name </label>
+                    <input type="text" pInputText formControlName="productName">
+                </div>
+                <div class="col item">
+                    <label> Product description </label>
+                    <textarea pInputTextarea formControlName="productDescription" rows="4"></textarea>
+                </div>
+                <div class="col item">
+                    <label> Product qty </label>
+                    <p-inputNumber formControlName="productQty"></p-inputNumber>
+                </div>
+            </div>
+            <button pButton type="button" label="Append" icon="pi pi-plus" class="p-button p-button-secondary"
+                (click)="appendProduct()">
+            </button>
+
+        </div>
+
+        <button pButton type="submit" class="p-button"> Submit </button>
+    </form>
+</div>

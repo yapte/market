@@ -1,0 +1,49 @@
+<div class="wrap container col">
+
+    <h2> Simple form 2 </h2>
+
+    <form [formGroup]="form" class="col" (ngSubmit)="submit()">
+        <div class="col">
+            <label> Order name </label>
+            <input pInputText type="text" formControlName="name">
+        </div>
+
+        <div *ngIf="isDescriptionVisible$ |async" class="col">
+            <label> Order description </label>
+            <input pInputText type="text" formControlName="description">
+        </div>
+
+        <p-checkbox formControlName="isRequired" label="is required" [binary]="true"></p-checkbox>
+
+        <div formGroupName="customer" class="customer col">
+            <h4> Customer </h4>
+            <div class="col">
+                <label> Customer name </label>
+                <input pInputText type="text" formControlName="name">
+            </div>
+            <div class="col">
+                <label> Customer age </label>
+                <p-inputNumber formControlName="age"></p-inputNumber>
+            </div>
+        </div>
+
+        <div formArrayName="products" class="products col">
+            <h4> Products </h4>
+            <!-- <div *ngFor="let item of productArrayItems; let i = index" [formGroupName]="i" class="products-item"> -->
+            <div *ngFor="let i of productArrayIndexes" [formGroupName]="i" class="products-item col">
+                <div class="col">
+                    <label> Product name </label>
+                    <input pInputText type="text" formControlName="name">
+                </div>
+                <div class="col">
+                    <label> Produuct price </label>
+                    <p-inputNumber formControlName="price"></p-inputNumber>
+                </div>
+            </div>
+
+            <button pButton type="button" class="p-button p-button-outlined" (click)="add()"> Add product </button>
+        </div>
+
+        <button pButton type="submit" class="p-button" [disabled]="form.invalid"> Submit </button>
+    </form>
+</div>
