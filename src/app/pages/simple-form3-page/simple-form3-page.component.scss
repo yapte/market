@@ -1,0 +1,21 @@
+.customer {
+    padding: 24px;
+    border-radius: 24px;
+    background-color: #efefef;
+}
+
+.products {
+    padding: 24px;
+    border-radius: 24px;
+    border: solid 1px #ccc;
+
+    &-item {
+        padding: 24px;
+        border-radius: 24px;
+        background-color: #efefef;
+    }
+}
+
+button {
+    align-self: flex-start;
+}

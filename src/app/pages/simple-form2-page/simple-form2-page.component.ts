@@ -21,15 +21,9 @@ export class SimpleForm2PageComponent implements OnInit {
 
   constructor(private _fb: FormBuilder) { }
 
-  private _generateProductFormFB(): FormGroup {
-    return this._fb.group({
-      name: [],
-      price: [0, [Validators.email]],
-    });
-  }
   private _generateProductForm(): FormGroup {
     return new FormGroup({
-      name: new FormControl<string>('', [Validators.max(23)],),
+      name: new FormControl<string>(''),
       price: new FormControl<number>(0),
     }, [],);
   }
@@ -65,6 +59,14 @@ export class SimpleForm2PageComponent implements OnInit {
   add() {
     (this.form.get('products') as FormArray)
       .push(this._generateProductForm());
+  }
+
+  removeAt(index: number) {
+    (this.form.get('products') as FormArray).removeAt(index);
+  }
+
+  trackById(index: number, item: any) {
+    return item;
   }
 
   submit() {

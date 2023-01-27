@@ -27,10 +27,12 @@
             </div>
         </div>
 
-        <div formArrayName="products" class="products col">
+        <app-array (onAdd)="add()" (onRemoveAt)="removeAt($event)"></app-array>
+
+        <!-- <div *ngFor="let i of productArrayIndexes; trackBy:trackById" [formGroupName]="i" class="products-item col"> -->
+        <!-- <div formArrayName="products" class="products col">
             <h4> Products </h4>
-            <!-- <div *ngFor="let item of productArrayItems; let i = index" [formGroupName]="i" class="products-item"> -->
-            <div *ngFor="let i of productArrayIndexes" [formGroupName]="i" class="products-item col">
+            <div *ngFor="let item of productArrayItems; let i = index" [formGroupName]="i" class="products-item col">
                 <div class="col">
                     <label> Product name </label>
                     <input pInputText type="text" formControlName="name">
@@ -39,10 +41,17 @@
                     <label> Produuct price </label>
                     <p-inputNumber formControlName="price"></p-inputNumber>
                 </div>
+
+                <button pButton type="button" icon="pi pi-trash" (click)="removeAt(i)"
+                    class="p-button p-button-rounded p-button-outlined"></button>
             </div>
 
-            <button pButton type="button" class="p-button p-button-outlined" (click)="add()"> Add product </button>
-        </div>
+
+            <button pButton type="button" label="Add product" icon="pi pi-plus" class="p-button p-button-outlined"
+                (click)="add()"> </button>
+        </div> -->
+        <!-- <app-group *ngFor="let item of productArrayItems; let i = index" [index]="i"
+            (onRemoveAt)="removeAt($event)"></app-group> -->
 
         <button pButton type="submit" class="p-button" [disabled]="form.invalid"> Submit </button>
     </form>

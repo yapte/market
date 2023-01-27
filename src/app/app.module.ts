@@ -83,7 +83,7 @@ import { TradeFormEisPlanPositionNumberComponent } from './components/trade-form
 
 import { TradeFormItemsIsWithVatComponent } from './components/trade-form/components/trade-form-items-is-with-vat/trade-form-items-is-with-vat.component';
 import { ShowIfTenantDirective } from './tenants/show-if-tenant.directive';
-import { CitiesStoreAutocompleteDirective } from './shared/directives/cities-store-autoocomplete.directive';
+import { CitiesStoreAutocompleteDirective } from 'src/app/shared/directives/cities-store-autoocomplete.directive';
 import { TradeFormInvitationAutoRegionsComponent } from './components/trade-form/components/trade-form-invitation-auto-regions/trade-form-invitation-auto-regions.component';
 import { TradeFormInvitationAutoIsHideApplicationComponent } from './components/trade-form/components/trade-form-invitation-auto-is-hide-application/trade-form-invitation-auto-is-hide-application.component';
 import { TradeFormInvitationAutoMethodComponent } from './components/trade-form/components/trade-form-invitation-auto-method/trade-form-invitation-auto-method.component';
@@ -96,6 +96,12 @@ import { FiltersModule } from './shared/features/filters/filters.module';
 import { SortModule } from './shared/features/sort/sort.module';
 import { TradeGridCardComponent } from './shared/components/trade-grid-card/trade-grid-card.component';
 import { TradeListCardComponent } from './shared/components/trade-list-card/trade-list-card.component';
+import { SimpleFormPageComponent } from './pages/simple-form-page/simple-form-page.component';
+import { ProductFormComponent } from './pages/simple-form-page/components/product-form/product-form.component';
+import { SimpleForm2PageComponent } from './pages/simple-form2-page/simple-form2-page.component';
+import { ArrayComponent } from './pages/simple-form2-page/components/array/array.component';
+import { GroupComponent } from './pages/simple-form2-page/components/group/group.component';
+import { SimpleForm3PageComponent } from './pages/simple-form3-page/simple-form3-page.component';
 
 
 registerLocaleData(localeRu);
@@ -163,6 +169,12 @@ registerLocaleData(localeRu);
     TradeFormInvitationAutoKeywordsComponent,
     TradeFormInvitationManualInvitatedSuppliersComponent,
     TradeListPageComponent,
+    SimpleFormPageComponent,
+    ProductFormComponent,
+    SimpleForm2PageComponent,
+    ArrayComponent,
+    GroupComponent,
+    SimpleForm3PageComponent,
   ],
   imports: [
     BrowserModule,
@@ -176,7 +188,7 @@ registerLocaleData(localeRu);
     FiltersModule,
     SortModule,
     TradeGridCardComponent,
-    TradeListCardComponent, 
+    TradeListCardComponent,
 
     AutoCompleteModule,
     ButtonModule,
@@ -204,6 +216,7 @@ registerLocaleData(localeRu);
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'RUB' },
     { provide: LOCALE_ID, useValue: 'ru-RU' },
+    // TestService,
   ],
   bootstrap: [AppComponent]
 })

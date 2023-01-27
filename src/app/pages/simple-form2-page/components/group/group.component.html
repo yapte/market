@@ -1,0 +1,15 @@
+<div formArrayName="products">
+    <div [formGroupName]="index" class="products-item col">
+        <div class="col">
+            <label> Product name </label>
+            <input pInputText type="text" formControlName="name">
+        </div>
+        <div class="col">
+            <label> Produuct price </label>
+            <p-inputNumber formControlName="price"></p-inputNumber>
+        </div>
+
+        <button pButton type="button" icon="pi pi-trash" (click)="removeAt(index)"
+            class="p-button p-button-rounded p-button-outlined"></button>
+    </div>
+</div>

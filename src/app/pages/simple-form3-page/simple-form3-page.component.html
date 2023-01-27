@@ -1,0 +1,52 @@
+<div class="wrap container col">
+
+    <h2> Simple form 3 </h2>
+
+    <form [formGroup]="form" class="col">
+        <div class="col">
+            <label> Name </label>
+            <input type="text" pInputText formControlName="name">
+        </div>
+        <div class="col">
+            <label> Descritpion </label>
+            <textarea pInputTextarea formControlName="description"></textarea>
+        </div>
+
+        <div formGroupName="customer" class="customer col">
+            <h3> Customer </h3>
+
+            <div class="col">
+                <label> Customer name </label>
+                <input type="text" pInputText formControlName="name">
+            </div>
+            <div class="col">
+                <label> Customer age </label>
+                <input type="number" pInputText formControlName="age">
+            </div>
+        </div>
+        <div formArrayName="products" class="products col">
+            <h3> Product list </h3>
+            <div *ngFor="let item of productFormGroups; let i = index" [formGroupName]="i" class="products-item col">
+                <div class="col">
+                    <label> Product name </label>
+                    <input type="text" pInputText formControlName="name">
+                </div>
+                <div class="col">
+                    <label> Product price </label>
+                    <input type="number" pInputText formControlName="price">
+                </div>
+                <div class="col">
+                    <label> Product quntity </label>
+                    <input type="number" pInputText formControlName="qty">
+                </div>
+
+                <button pButton type="button" icon="pi pi-trash" class="p-button p-button-text" (click)="removeAt(i)">
+                </button>
+            </div>
+
+            <button pButton type="button" class="p-button" (click)="append()"> Append </button>
+        </div>
+
+    </form>
+
+</div>
