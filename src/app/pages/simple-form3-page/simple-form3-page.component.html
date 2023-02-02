@@ -1,16 +1,18 @@
 <div class="wrap container col">
 
     <h2> Simple form 3 </h2>
-
-    <form [formGroup]="form" class="col">
+    
+    <form [formGroup]="form" class="col" (ngSubmit)="submit()">
+        <button pButton type="submit" label="SUBMIT" [disabled]="form.invalid"> </button>
         <div class="col">
             <label> Name </label>
             <input type="text" pInputText formControlName="name">
         </div>
-        <div class="col">
+        <div *ngIf="isDescriptionRequired$ |async" class="col">
             <label> Descritpion </label>
             <textarea pInputTextarea formControlName="description"></textarea>
         </div>
+        <p-checkbox formControlName="isRequired" label="IS DESCRIPTION REQUIRED" [binary]="true"></p-checkbox>
 
         <div formGroupName="customer" class="customer col">
             <h3> Customer </h3>
@@ -40,11 +42,17 @@
                     <input type="number" pInputText formControlName="qty">
                 </div>
 
-                <button pButton type="button" icon="pi pi-trash" class="p-button p-button-text" (click)="removeAt(i)">
+                <button *ngIf="isRemoveBtnVisible$ |async" pButton type="button" icon="pi pi-trash"
+                    class="p-button p-button-text" (click)="removeAt(i)">
                 </button>
             </div>
 
-            <button pButton type="button" class="p-button" (click)="append()"> Append </button>
+            <button pButton type="button" class="p-button" (click)="append()"> Append
+            </button>
+        </div>
+
+        <div class="sum">
+            TOTAL SUM: {{sum$ |async |currency}}
         </div>
 
     </form>
