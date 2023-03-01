@@ -1,0 +1,36 @@
+<div class="wrap container col">
+    <div class="r1 row">
+        <button pButton class="p-button">Скачать предложения</button>
+        <button pButton class="p-button"> Выгрузить в Excel </button>
+    </div>
+
+    <div class="r2 row">
+        <h4>Позиции закупки</h4>
+        <div class="right row">
+            <div class="right-item row">
+                <span class="right-title">Отображение:</span>
+                <p-selectButton [options]="viewItems" [(ngModel)]="selectedView" optionLabel="label"
+                    optionValue="value"></p-selectButton>
+            </div>
+            <div class="right-item row">
+                <span class="right-title">Сумма:</span>
+                <p-selectButton [options]="sumItems" [(ngModel)]="selectedSum" optionLabel="label"
+                    optionValue="value"></p-selectButton>
+            </div>
+        </div>
+    </div>
+
+    <div class="r3 col">
+        <p-panel *ngFor="let product of products; let productIndex = index" [toggleable]="true" toggler="header"
+            [expandIcon]="null">
+            <ng-template pTemplate="header">
+                <app-pps-product [product]="product" [index]="productIndex + 1"></app-pps-product>
+            </ng-template>
+            <div class="offers col">
+                <h4> Предложения поставщиков </h4>
+                <app-pps-offer *ngFor="let offersGroup of product.offers; let offerIndex = index"
+                    [offersGroup]="offersGroup" [parentIndex]="offerIndex + 1"></app-pps-offer>
+            </div>
+        </p-panel>
+    </div>
+</div>

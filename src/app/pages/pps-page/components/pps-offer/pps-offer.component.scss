@@ -1,0 +1,77 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    .item {
+        align-items: flex-start;
+        border: solid 1px #efefef;
+        overflow-y: hidden;
+        box-sizing: border-box;
+        background-color: white;
+
+        &>* {
+            padding: 12px;
+        }
+    }
+
+    .index {
+        width: 60px;
+    }
+
+    .data {
+        flex: 1 1;
+
+        &-supplier {
+            align-items: center;
+
+            button {
+                background-color: #F4F6F9;
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                color: #57B037;
+                border: none;
+            }
+
+            .best-price {
+                background-color: #57B037;
+                color: white;
+                padding: 3px 8px;
+                border-radius: 4px;
+                line-height: 1;
+                font-weight: 600;
+                font-size: 10px;
+                line-height: 12px;
+            }
+        }
+
+        &-offer {
+            gap: 4px;
+            font-size: 13px;
+            color: #A3AAB5;
+        }
+    }
+
+    .sum {
+        width: 200px;
+
+        p-togglebutton::ng-deep .p-togglebutton {
+            border: none;
+            border-bottom: 1px dashed #2A3767;
+            border-radius: 0;
+            font-weight: 400;
+            font-size: 12px;
+            background-color: transparent;
+            color: #2A3767;
+            padding: 0;
+
+            &.p-button:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .toggle {
+        align-items: center;
+    }
+}

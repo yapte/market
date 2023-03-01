@@ -1,8 +1,20 @@
+import { formatNumber } from "@angular/common";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { TenantCode } from "src/app/helpers/tenant-code.enum";
 
 export class TradeFormGenerator {
     static generateForm(tenantCode: TenantCode): FormGroup {
+        const initialValue = 123.345;
+        const str1 = formatNumber(initialValue, 'en-EN', '1.2-2');
+        const parsed1 = parseFloat(str1);
+
+        const parsed2 = Math.round(initialValue * 100) / 100;
+        console.log(parsed2);
+        
+
+        console.log(str1);
+        console.log(parsed1);
+        
         return new FormGroup({
             main: new FormGroup({
                 tradeName: new FormControl('', [Validators.required]),
@@ -19,7 +31,7 @@ export class TradeFormGenerator {
                     this.generateProductFormItem(tenantCode),
                 ]),
                 conditionsOfVat: new FormControl(),
-                initialPriceWithoutVat: new FormControl(),
+                initialPriceWithoutVat: new FormControl(parsed1),
                 isManualEnterPriceForEachProduct: new FormControl(),
                 initialPriceWithVat: new FormControl(),
                 rateVat: new FormControl({ value: null, disabled: true }),

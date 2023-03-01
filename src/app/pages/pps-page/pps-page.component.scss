@@ -1,0 +1,48 @@
+.wrap {
+    gap: 24px;
+}
+
+.r1 {
+    justify-content: flex-end;
+}
+
+.r2 {
+    justify-content: space-between;
+
+    .right {
+        &-item {
+            align-items: center;
+        }
+    }
+}
+
+.offers {
+    gap: 0;
+}
+
+:host {
+    ::ng-deep {
+        .p-panel {
+            border: solid 1px #efefef;
+            background-color: #FFFFFF;
+            box-shadow: 0px 3px 6px rgba(55, 65, 72, 0.08);
+            border-radius: 8px;
+
+            .p-panel-icons-end {
+                display: none;
+            }
+
+            .p-panel-content {
+                background-color: #fafafa;
+            }
+        }
+
+        .property-title {
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 1.5;
+            text-transform: uppercase;
+            color: #A3AAB5;
+        }
+    }
+}

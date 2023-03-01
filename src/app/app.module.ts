@@ -102,6 +102,11 @@ import { SimpleForm2PageComponent } from './pages/simple-form2-page/simple-form2
 import { ArrayComponent } from './pages/simple-form2-page/components/array/array.component';
 import { GroupComponent } from './pages/simple-form2-page/components/group/group.component';
 import { SimpleForm3PageComponent } from './pages/simple-form3-page/simple-form3-page.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { PpsPageComponent } from './pages/pps-page/pps-page.component';
+import { PpsProductComponent } from './pages/pps-page/components/pps-product/pps-product.component';
+import { PpsOfferComponent } from './pages/pps-page/components/pps-offer/pps-offer.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 registerLocaleData(localeRu);
@@ -175,6 +180,10 @@ registerLocaleData(localeRu);
     ArrayComponent,
     GroupComponent,
     SimpleForm3PageComponent,
+    BannerComponent,
+    PpsPageComponent,
+    PpsProductComponent,
+    PpsOfferComponent,
   ],
   imports: [
     BrowserModule,
@@ -200,6 +209,7 @@ registerLocaleData(localeRu);
     FileUploadModule,
     InputMaskModule,
     InputNumberModule,
+    InputSwitchModule,
     InputTextareaModule,
     InputTextModule,
     MenubarModule,

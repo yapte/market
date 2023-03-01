@@ -1,6 +1,8 @@
 <div class="wrap container col">
 
     <h2> Simple form 3 </h2>
+
+    <app-banner></app-banner>
     
     <form [formGroup]="form" class="col" (ngSubmit)="submit()">
         <button pButton type="submit" label="SUBMIT" [disabled]="form.invalid"> </button>

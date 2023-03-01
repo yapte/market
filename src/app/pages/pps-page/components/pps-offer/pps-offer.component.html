@@ -1,0 +1,31 @@
+<ng-container *ngFor="let offer of offersGroup; let index = index">
+    <div *ngIf="(index === 0) || (index > 0 && isExpanded)" class="item row" @collapseAnimation>
+        <div class="index">
+            <span>{{parentIndex}}</span>
+            <span *ngIf="isExpanded">.{{index + 1}}</span>
+        </div>
+        <div class="data col">
+            <div class="data-supplier row">
+                <span> {{offer.organizationName}} </span>
+                <button pButton icon="pi pi-search-plus"></button>
+                <button pButton icon="pi pi-comment"></button>
+                <div *ngIf="parentIndex === 1" class="best-price">лучшая цена</div>
+            </div>
+            <p class="data-offer row">
+                <span> {{offer.id}} </span>
+                <span>&bull;</span>
+                <span> {{offer.participantOfferPublishDate |date:'dd MMMM, HH:mm'}} МСК </span>
+            </p>
+        </div>
+        <div class="sum col">
+            <div class="property-title">Сумма c НДС (20%)</div>
+            <div class="property-value">{{offer.price |currency}}</div>
+            <p-toggleButton *ngIf="offersGroup.length > 1 && index === 0" [(ngModel)]="isExpanded"
+                [onLabel]="'Скрыть варианты'" [offLabel]="'Ещё ' + (offersGroup.length - 1)"></p-toggleButton>
+        </div>
+        <div class="toggle row">
+            <p-inputSwitch></p-inputSwitch>
+            <span>Соответствует <br> требованиям</span>
+        </div>
+    </div>
+</ng-container>

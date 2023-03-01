@@ -1,0 +1,29 @@
+:host {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+
+    .index {
+        width: 60px;
+    }
+
+    .data {
+        flex: 1 1;
+
+        &-name {}
+
+        &-offer-counter {}
+    }
+
+    .price {
+        width: 15%;
+    }
+
+    .qty {
+        width: 15%;
+    }
+
+    .sum {
+        width: 15%;
+    }
+}

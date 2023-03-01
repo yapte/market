@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    gap: 12px;
+    background-color: rgb(255, 165, 0, .24);
+    padding: 24px;
+    border-radius: 24px;
+
+    .line {
+        width: 6px;
+        border-radius: 3px;
+        background-color: orange;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: orange;
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .text {
+        width: fit-content;
+    }
+}
