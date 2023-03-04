@@ -42,6 +42,19 @@ export class NavComponent {
       ]
     },
     {
+      label: 'ППС - один победитель',
+      items: [
+        {
+          label: 'Подача предложения',
+          routerLink: ['/pps-send-offers'],
+        },
+        {
+          label: 'Рассмотрение предложения',
+          routerLink: ['/pps-choose-offers'],
+        },
+      ]
+    },
+    {
       label: 'Предварительные предложения',
       items: [
         {

@@ -8,7 +8,6 @@ import { CITIES } from '../../components/trade-form/constants/cities.const';
 @Directive({
   selector: 'p-autoComplete[citiesStore]',
   standalone: true,
-  // import {  } from "module";
 })
 export class CitiesStoreAutocompleteDirective {
 

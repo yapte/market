@@ -1,0 +1,38 @@
+:host {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+
+    .index {
+        width: 60px;
+    }
+
+    .data {
+        flex: 1 1;
+
+        &-offer-qty {
+
+            span {
+                font-weight: 600;
+                color: #79CC38;
+
+                &.danger {
+                    color: #F24841;
+                }
+
+            }
+        }
+    }
+
+    .price {
+        width: 15%;
+    }
+
+    .qty {
+        width: 15%;
+    }
+
+    .sum {
+        width: 15%;
+    }
+}

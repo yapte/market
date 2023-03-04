@@ -103,10 +103,14 @@ import { ArrayComponent } from './pages/simple-form2-page/components/array/array
 import { GroupComponent } from './pages/simple-form2-page/components/group/group.component';
 import { SimpleForm3PageComponent } from './pages/simple-form3-page/simple-form3-page.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { PpsPageComponent } from './pages/pps-page/pps-page.component';
-import { PpsProductComponent } from './pages/pps-page/components/pps-product/pps-product.component';
-import { PpsOfferComponent } from './pages/pps-page/components/pps-offer/pps-offer.component';
+import { PpsPageComponent } from './pages/pps-choose-offers/pps-choose-offers.component';
+import { PpsProductComponent } from './pages/pps-choose-offers/components/pps-product/pps-product.component';
+import { PpsOfferComponent } from './pages/pps-choose-offers/components/pps-offer/pps-offer.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { PpsSendOffersComponent } from './pages/pps-send-offers/pps-send-offers.component';
+import { PpsSendOffersProductComponent } from './pages/pps-send-offers/components/pps-send-offers-product/pps-send-offers-product.component';
+import { PpsSendOffersOfferComponent } from './pages/pps-send-offers/components/pps-send-offers-offer/pps-send-offers-offer.component';
+import { PpsSendOffersCreateModalComponent } from './pages/pps-send-offers/components/pps-send-offers-create-modal/pps-send-offers-create-modal.component';
 
 
 registerLocaleData(localeRu);
@@ -184,6 +188,10 @@ registerLocaleData(localeRu);
     PpsPageComponent,
     PpsProductComponent,
     PpsOfferComponent,
+    PpsSendOffersComponent,
+    PpsSendOffersProductComponent,
+    PpsSendOffersOfferComponent,
+    PpsSendOffersCreateModalComponent,
   ],
   imports: [
     BrowserModule,

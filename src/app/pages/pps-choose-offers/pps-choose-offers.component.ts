@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-pps-page',
-  templateUrl: './pps-page.component.html',
-  styleUrls: ['./pps-page.component.scss']
+  selector: 'app-pps-choose-offers',
+  templateUrl: './pps-choose-offers.component.html',
+  styleUrls: ['./pps-choose-offers.component.scss'],
 })
 export class PpsPageComponent {
   products: any[] = PRODUCTS;

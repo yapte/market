@@ -1,0 +1,21 @@
+<div class="index"> {{index}} </div>
+<div class="data col">
+    <div class="data-name"> {{product.name}} </div>
+    <div class="data-offer-qty">
+        Выбрано
+        <span class="pp-qty" [class.danger]="!selectedQty">{{selectedQty}} ПП</span>
+        из максимум 10
+    </div>
+</div>
+<div class="price col">
+    <div class="property-title">Цена за ед.</div>
+    <div class="property-value">{{product.price |currency}}</div>
+</div>
+<div class="qty col">
+    <div class="property-title">Кол-во</div>
+    <div class="property-value">{{product.qty}} ШТ.</div>
+</div>
+<div class="sum col">
+    <div class="property-title">Сумма c НДС (20%)</div>
+    <div class="property-value">{{(product.price * product.qty) |currency}}</div>
+</div>

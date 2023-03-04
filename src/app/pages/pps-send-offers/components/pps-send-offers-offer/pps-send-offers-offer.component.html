@@ -1,0 +1,32 @@
+<div *ngFor="let offer of offers" class="item">
+    <div class="chb">
+        <input type="checkbox" [(ngModel)]="productChbs[offer.id]" (ngModelChange)="onOfferToggled($event, offer)">
+    </div>
+
+    <div class="data col">
+        <p> {{offer.name}} </p>
+        <p>
+            <ng-container *ngIf="createdOfferIds.includes(offer.id)">
+                <span class="created"> Созданное </span>
+                <span>&nbsp;&bull;&nbsp;</span>
+            </ng-container>
+            <span>Offer #{{offer.id}}</span>
+        </p>
+    </div>
+
+    <div class="doc">
+        <button pButton icon="pi pi-book" class="p-button-icon p-button-text p-button-rounded"></button>
+    </div>
+    <div class="price col">
+        <div class="property-title">Цена за ед.</div>
+        <div class="property-value">{{offer.price |currency}}</div>
+    </div>
+</div>
+
+<label class="item">
+    <div class="chb">
+        <input type="checkbox" [(ngModel)]="productChbs.isNewOffer" (ngModelChange)="onNewOfferToggled($event)">
+    </div>
+
+    <div class="data"> Создать новое Предварительное предложение </div>
+</label>

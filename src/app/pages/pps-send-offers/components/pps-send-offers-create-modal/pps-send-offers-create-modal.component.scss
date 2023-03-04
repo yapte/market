@@ -1,0 +1,16 @@
+:host {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    form {
+        padding: 12px;
+        border-radius: 12px;
+        border: solid 1px #ccc;
+
+        .btns {
+            justify-content: flex-end;
+        }
+    }
+}

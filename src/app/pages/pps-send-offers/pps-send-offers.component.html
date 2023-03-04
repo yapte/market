@@ -1,0 +1,47 @@
+<ng-container *ngIf="view$ |async as view; else inProgress">
+    <div class="wrap container col">
+        <div class="r2 row">
+            <h4>Детали предложения</h4>
+            <div class="right row">
+                <button pButton class="p-button-secondary"> Назад </button>
+                <button pButton class="p-button"> Импорт из Excel </button>
+            </div>
+        </div>
+
+        <div class="r3 col">
+            <p-panel *ngFor="let productView of view.productViews; let productIndex = index" [toggleable]="true"
+                toggler="header" [expandIcon]="null">
+                <ng-template pTemplate="header">
+                    <app-pps-send-offers-product [product]="productView.product"
+                        [index]="productIndex + 1"></app-pps-send-offers-product>
+                </ng-template>
+                <div class="offers col">
+                    <h4> Подходящие предварительные предложения </h4>
+                    <app-pps-send-offers-offer [offers]="productView.offers"
+                        [productChbs]="chbs[productView.product.id]" [productId]="productView.product.id">
+                    </app-pps-send-offers-offer>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+
+    <div class="footer row">
+        <div class="footer-inner container row">
+            <span *ngIf="!checkedQty" @titleAnimation>Выберите предложения по всем позициям</span>
+            <span *ngIf="checkedQty" @titleAnimation>
+                Предложено на {{checkedQty}} из {{view.trade.products.length}}
+            </span>
+
+            <button *ngIf="checkedNewQty" pButton [label]="'Create(' + checkedNewQty + ')'" class="p-button-success"
+                [disabled]="view.trade.products.length !== checkedQty" (click)="showCreateModal()"
+                @titleAnimation></button>
+
+            <button pButton label="Submit" class="p-button"
+                [disabled]="view.trade.products.length !== checkedQty || checkedNewQty" (click)="submit()"></button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #inProgress>
+    <div class="in-progress"> FETCH IN PROGRESS </div>
+</ng-template>

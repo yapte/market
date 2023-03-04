@@ -1,0 +1,35 @@
+<ng-container *ngFor="let form of forms; let index = index">
+    <form *ngIf="index === (activeFormIndex$ |async)" [formGroup]="form" class="col" @titleAnimation>
+
+        <h3 *ngIf="forms.length === 1"> Создание нового предварительного предложения </h3>
+
+        <ng-container *ngIf="forms.length > 1">
+            <h3>Создание новых предварительных предложений</h3>
+            <p> Позиция {{index + 1}} из {{forms.length}} </p>
+        </ng-container>
+
+        <div class="col">
+            <label> Id </label>
+            <input type="text" pInputText formControlName="id" readonly>
+        </div>
+
+        <div class="col">
+            <label> Name </label>
+            <input type="text" pInputText formControlName="name">
+        </div>
+
+        <div class="col">
+            <label> Price </label>
+            <input type="number" pInputText formControlName="price">
+        </div>
+
+        <div class="btns row">
+            <button *ngIf="(activeFormIndex$ |async) > 0" pButton label="Назад" class="p-button p-button-secondary"
+                (click)="prev()" @titleAnimation></button>
+
+            <button pButton class="p-button"
+                [label]="((activeFormIndex$ |async) === forms.length - 1) ? 'Опубликовать' : 'Опубликовать и продолжить'"
+                (click)="submit()"></button>
+        </div>
+    </form>
+</ng-container>
