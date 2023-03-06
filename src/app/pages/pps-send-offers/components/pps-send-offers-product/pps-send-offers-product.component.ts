@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../services/pps-send-offers-data.service';
-import { Chbs, PpsSendOffersFacadeService } from '../../services/pps-send-offers.service';
+import { Chbs, PpsSendOffersFacadeService } from '../../services/pps-send-offers-facade.service';
 
 @Component({
   selector: 'app-pps-send-offers-product',

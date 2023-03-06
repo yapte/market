@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Offer } from '../../services/pps-send-offers-data.service';
-import { PpsSendOffersFacadeService } from '../../services/pps-send-offers.service';
+import { PpsSendOffersFacadeService } from '../../services/pps-send-offers-facade.service';
 
 @Component({
   selector: 'app-pps-send-offers-offer',
@@ -12,6 +12,8 @@ export class PpsSendOffersOfferComponent {
   @Input() productChbs: { [offerId: number]: boolean; isNewOffer: boolean };
   @Input() offers: Offer[];
 
+
+  // TODO: 
   get createdOfferIds(): number[] {
     return this._facade.createdOfferIds;
   }

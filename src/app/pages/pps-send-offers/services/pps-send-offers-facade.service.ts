@@ -5,14 +5,16 @@ import { BehaviorSubject, combineLatest, delay, filter, Observable, of, switchMa
 import { Destroy$ } from "src/app/helpers/destroy";
 import { PpsSendOffersCreateModalComponent } from "../components/pps-send-offers-create-modal/pps-send-offers-create-modal.component";
 import { Offer, PpsSendOffersDataService, Product, Trade } from "./pps-send-offers-data.service";
+import { PpsSendOffersFormService } from "./pps-send-offers-form-service";
+import { PpsSendOffersSelectedItemsService } from "./pps-send-offers-selected-items.service";
 
 @Injectable()
 export class PpsSendOffersFacadeService extends Destroy$ {
     private _fetchOffersEmitter$ = new BehaviorSubject<boolean>(true);
     private _view$ = new BehaviorSubject<PpsSendOffersView>(null);
-    private _chbs: Chbs;
+    // private _chbs: Chbs;
     private _createOffersModalRef: DynamicDialogRef;
-    private _forms: FormGroup[] = [];
+    // private _forms: FormGroup[] = [];
     private _activeFormIndex$ = new BehaviorSubject<number>(0);
     private _createdOfferIds: number[] = [];
 
@@ -20,36 +22,38 @@ export class PpsSendOffersFacadeService extends Destroy$ {
     activeFormIndex$: Observable<number> = this._activeFormIndex$.asObservable();
 
     get chbs(): Chbs {
-        return this._chbs;
+        return this._selectedItemsService.chbs;
     }
     get createdOfferIds(): number[] {
         return this._createdOfferIds;
     }
     get forms(): FormGroup[] {
-        return this._forms;
+        return this._formService.forms;
     }
 
     constructor(
         private _data: PpsSendOffersDataService,
+        private _formService: PpsSendOffersFormService,
+        private _selectedItemsService: PpsSendOffersSelectedItemsService,
         private _dialogService: DialogService,
     ) { super() }
 
-    private _initChbsModel(products: Product[], offers: Offer[]) {
-        if (this._chbs) return;
+    // private _initChbsModel(products: Product[], offers: Offer[]) {
+    //     if (this._chbs) return;
 
-        this._chbs = products.reduce((acc, p) => ({ ...acc, [p.id]: { isNewOffer: false } }), {});
-        offers.forEach(o => this._chbs[o.productId][o.id] = true);
-    }
+    //     this._chbs = products.reduce((acc, p) => ({ ...acc, [p.id]: { isNewOffer: false } }), {});
+    //     offers.forEach(o => this._chbs[o.productId][o.id] = true);
+    // }
 
-    private _generateForm(productId: number): FormGroup {
-        const product: Product = this._view$.value.productViews.find(pv => pv.product.id === productId).product;
-        return new FormGroup({
-            id: new FormControl<number>(null),
-            name: new FormControl<string>(`New offer for ${product.name}`),
-            price: new FormControl<number>(null),
-            productId: new FormControl<number>(productId),
-        });
-    }
+    // private _generateForm(productId: number): FormGroup {
+    //     const product: Product = this._view$.value.productViews.find(pv => pv.product.id === productId).product;
+    //     return new FormGroup({
+    //         id: new FormControl<number>(null),
+    //         name: new FormControl<string>(`New offer for ${product.name}`),
+    //         price: new FormControl<number>(null),
+    //         productId: new FormControl<number>(productId),
+    //     });
+    // }
 
     init() {
         combineLatest([
@@ -57,7 +61,8 @@ export class PpsSendOffersFacadeService extends Destroy$ {
             this._fetchOffersEmitter$.pipe(switchMap(() => this._data.getOffers())),
         ]).pipe(
             tap(([trade, offers]) => {
-                this._initChbsModel(trade.products, offers);
+                // this._initChbsModel(trade.products, offers);
+                this._selectedItemsService.init(trade.products, offers);
 
                 const productsMap: Record<number, ProductView> = trade.products.reduce((acc, p) => ({ ...acc, [p.id]: { product: p, offers: [] } }), {});
                 offers.forEach(o => productsMap[o.productId].offers.push(o));
@@ -106,27 +111,31 @@ export class PpsSendOffersFacadeService extends Destroy$ {
     }
 
     onOfferToggled(productId: number, offerId: number, isChecked: boolean) {
-        if (this._chbs[productId].isNewOffer)
-            this._chbs[productId].isNewOffer = false;
-        this._chbs[productId][offerId] = isChecked;
+        this._selectedItemsService.onOfferToggled(productId, offerId, isChecked);
+        // if (this._chbs[productId].isNewOffer)
+        //     this._chbs[productId].isNewOffer = false;
+        // this._chbs[productId][offerId] = isChecked;
     }
 
     onNewOfferToggled(productId: number, isChecked: boolean) {
-        if (isChecked) {
-            Object.keys(this._chbs[productId]).forEach(k => {
-                if (k !== 'isNewOffer') {
-                    this._chbs[productId][+k] = false
-                }
-            });
-        }
+        this._selectedItemsService.onNewOfferToggled(productId, isChecked);
+        // if (isChecked) {
+        //     Object.keys(this._chbs[productId]).forEach(k => {
+        //         if (k !== 'isNewOffer') {
+        //             this._chbs[productId][+k] = false
+        //         }
+        //     });
+        // }
     }
 
     showModal() {
         this._activeFormIndex$.next(0);
-        let productIds: number[] = Object.keys(this._chbs).map(value => +value);
-        productIds = productIds.filter(p => this._chbs[p].isNewOffer);
-        this._forms = productIds.map(productId => this._generateForm(productId));
+        // let productIds: number[] = Object.keys(this._chbs).map(value => +value);
+        // productIds = productIds.filter(p => this._chbs[p].isNewOffer);
+        // this._forms = productIds.map(productId => this._generateForm(productId));
 
+        let productIds: number[] = this._selectedItemsService.getNewOfferProductIds();
+        this._formService.generateForms(productIds);
         this._createOffersModalRef = this._dialogService.open(PpsSendOffersCreateModalComponent, {});
         this._createOffersModalRef.onClose
             .pipe(
@@ -137,7 +146,7 @@ export class PpsSendOffersFacadeService extends Destroy$ {
     }
 
     submit() {
-        console.log(this._chbs);
+        console.log(this._selectedItemsService.chbs);
     }
 }
 

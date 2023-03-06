@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { titleAnimation } from 'src/app/animations/title.animation';
-import { PpsSendOffersFacadeService } from '../../services/pps-send-offers.service';
+import { PpsSendOffersFacadeService } from '../../services/pps-send-offers-facade.service';
 
 @Component({
   selector: 'app-pps-send-offers-create-modal',

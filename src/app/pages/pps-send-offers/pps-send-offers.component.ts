@@ -3,13 +3,21 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { titleAnimation } from 'src/app/animations/title.animation';
 import { PpsSendOffersDataService } from './services/pps-send-offers-data.service';
-import { Chbs, PpsSendOffersFacadeService, PpsSendOffersView } from './services/pps-send-offers.service';
+import { Chbs, PpsSendOffersFacadeService, PpsSendOffersView } from './services/pps-send-offers-facade.service';
+import { PpsSendOffersFormService } from './services/pps-send-offers-form-service';
+import { PpsSendOffersSelectedItemsService } from './services/pps-send-offers-selected-items.service';
 
 @Component({
   selector: 'app-pps-send-offers',
   templateUrl: './pps-send-offers.component.html',
   styleUrls: ['./pps-send-offers.component.scss'],
-  providers: [PpsSendOffersDataService, PpsSendOffersFacadeService, DialogService],
+  providers: [
+    PpsSendOffersDataService,
+    PpsSendOffersFacadeService,
+    PpsSendOffersFormService,
+    PpsSendOffersSelectedItemsService,
+    DialogService,
+  ],
   animations: [titleAnimation],
 })
 export class PpsSendOffersComponent implements OnInit {
