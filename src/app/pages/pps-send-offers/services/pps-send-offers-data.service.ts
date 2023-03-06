@@ -33,24 +33,24 @@ export class PpsSendOffersDataService {
         return of(this.OFFERS).pipe(delay(1000));
     }
 
-    createOffer(offer: Offer): number {
+    createOffer(offer: Offer): Observable<number> {
         __UNIQUE_ID++;
         offer.id = __UNIQUE_ID;
         this.OFFERS.push(offer);
-        return offer.id;
+        return of(offer.id).pipe(delay(500));
     }
 
-    editOffer(formValue: Offer) {
+    editOffer(formValue: Offer): Observable<number> {
         const offer = this.OFFERS.find(o => o.id === formValue.id);
         offer.name = formValue.name;
         offer.price = formValue.price;
+        return of(offer.id).pipe(delay(500));
     }
 }
 
 export class Trade {
     id: number;
     name: string;
-    // price: number;
     products: Product[];
 }
 

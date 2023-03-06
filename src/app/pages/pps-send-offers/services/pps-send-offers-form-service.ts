@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { Product } from "./pps-send-offers-data.service";
+import { Offer } from "./pps-send-offers-data.service";
 
 @Injectable()
 export class PpsSendOffersFormService {
@@ -21,5 +21,15 @@ export class PpsSendOffersFormService {
 
     generateForms(productIds: number[]) {
         this._forms = productIds.map(productId => this._generateForm(productId));
+    }
+
+    getFormDataByIndex(index: number): Offer {
+        return this._forms.at(index).value;
+    }
+
+    setOfferIdForForm(index: number, offerId: number) {
+        this._forms.at(index)
+            .get('id')
+            .setValue(offerId);
     }
 }

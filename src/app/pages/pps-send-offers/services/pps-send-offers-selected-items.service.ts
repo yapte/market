@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Offer, Product } from "./pps-send-offers-data.service";
-import { Chbs } from "./pps-send-offers-facade.service";
+import { SelectedItemsMap } from "./pps-send-offers-facade.service";
 
 @Injectable()
 export class PpsSendOffersSelectedItemsService {
-    private _chbs: Chbs;
+    private _chbs: SelectedItemsMap;
 
-    get chbs(): Chbs {
+    get chbs(): SelectedItemsMap {
         return this._chbs;
     }
 

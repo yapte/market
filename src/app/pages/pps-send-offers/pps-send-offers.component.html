@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div class="r3 col">
+        <div *ngIf="chbs" class="r3 col" @titleAnimation>
             <p-panel *ngFor="let productView of view.productViews; let productIndex = index" [toggleable]="true"
                 toggler="header" [expandIcon]="null">
                 <ng-template pTemplate="header">

@@ -1,5 +1,5 @@
 <ng-container *ngFor="let form of forms; let index = index">
-    <form *ngIf="index === (activeFormIndex$ |async)" [formGroup]="form" class="col" @titleAnimation>
+    <form *ngIf="index === activeFormIndex" [formGroup]="form" class="col" @titleAnimation>
 
         <h3 *ngIf="forms.length === 1"> Создание нового предварительного предложения </h3>
 
@@ -24,11 +24,11 @@
         </div>
 
         <div class="btns row">
-            <button *ngIf="(activeFormIndex$ |async) > 0" pButton label="Назад" class="p-button p-button-secondary"
+            <button *ngIf="activeFormIndex > 0" pButton type="button" label="Назад" class="p-button p-button-secondary"
                 (click)="prev()" @titleAnimation></button>
 
-            <button pButton class="p-button"
-                [label]="((activeFormIndex$ |async) === forms.length - 1) ? 'Опубликовать' : 'Опубликовать и продолжить'"
+            <button pButton class="p-button" type="button"
+                [label]="(activeFormIndex === forms.length - 1) ? 'Опубликовать' : 'Опубликовать и продолжить'"
                 (click)="submit()"></button>
         </div>
     </form>

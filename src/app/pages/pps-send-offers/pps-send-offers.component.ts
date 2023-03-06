@@ -3,9 +3,10 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { titleAnimation } from 'src/app/animations/title.animation';
 import { PpsSendOffersDataService } from './services/pps-send-offers-data.service';
-import { Chbs, PpsSendOffersFacadeService, PpsSendOffersView } from './services/pps-send-offers-facade.service';
+import { SelectedItemsMap, PpsSendOffersFacadeService, PpsSendOffersView } from './services/pps-send-offers-facade.service';
 import { PpsSendOffersFormService } from './services/pps-send-offers-form-service';
 import { PpsSendOffersSelectedItemsService } from './services/pps-send-offers-selected-items.service';
+import { PpsSendOffersStoreService } from './services/pps-send-offers-store.service';
 
 @Component({
   selector: 'app-pps-send-offers',
@@ -16,29 +17,37 @@ import { PpsSendOffersSelectedItemsService } from './services/pps-send-offers-se
     PpsSendOffersFacadeService,
     PpsSendOffersFormService,
     PpsSendOffersSelectedItemsService,
+    PpsSendOffersStoreService,
     DialogService,
   ],
   animations: [titleAnimation],
 })
 export class PpsSendOffersComponent implements OnInit {
-  view$: Observable<PpsSendOffersView> = this._facade.view$;
+  view$: Observable<PpsSendOffersView>;
 
-  get chbs(): Chbs {
+  get chbs(): SelectedItemsMap {
     return this._facade.chbs;
   };
 
   get checkedQty(): number {
-    return Object.values(this.chbs).filter(p => Object.values(p).some(value => value)).length;
+    if (!this.chbs) return 0;
+    return Object.values(this.chbs)
+      .filter(p => Object.values(p).some(value => value))
+      .length;
   }
 
   get checkedNewQty(): number {
-    return Object.values(this.chbs).filter(p => p.isNewOffer).length;
+    if (!this.chbs) return 0;
+    return Object.values(this.chbs)
+      .filter(p => p.isNewOffer)
+      .length;
   }
 
   constructor(private _facade: PpsSendOffersFacadeService) { }
 
   ngOnInit(): void {
     this._facade.init();
+    this.view$ = this._facade.view$;
   }
 
   showCreateModal() {

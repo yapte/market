@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { tap } from 'rxjs';
 import { titleAnimation } from 'src/app/animations/title.animation';
 import { PpsSendOffersFacadeService } from '../../services/pps-send-offers-facade.service';
 
@@ -10,24 +11,34 @@ import { PpsSendOffersFacadeService } from '../../services/pps-send-offers-facad
   styleUrls: ['./pps-send-offers-create-modal.component.scss'],
   animations: [titleAnimation],
 })
-export class PpsSendOffersCreateModalComponent implements OnInit {
-  forms: FormGroup[];
-  activeFormIndex$: Observable<number>;
+export class PpsSendOffersCreateModalComponent {
+  private _activeFormIndex: number = 0;
+
+  forms: FormGroup[] = this._facade.forms;
+
+  get activeFormIndex(): number {
+    return this._activeFormIndex;
+  }
 
   constructor(
     private _facade: PpsSendOffersFacadeService,
+    private _modalRef: DynamicDialogRef,
   ) { }
 
-  ngOnInit(): void {
-    this.forms = this._facade.forms;
-    this.activeFormIndex$ = this._facade.activeFormIndex$;
-  }
-
   prev() {
-    this._facade.goToPreviousForm();
+    this._activeFormIndex--;
   }
 
   submit() {
-    this._facade.publishOffer();
+    this._facade.publishOffer(this._activeFormIndex)
+      .pipe(tap(() => {
+        if (this._activeFormIndex === this.forms.length - 1) {
+          this._facade.fetchOffers();
+          this._modalRef.close(true);
+          return;
+        }
+        this._activeFormIndex++;
+      }))
+      .subscribe();
   }
 }
